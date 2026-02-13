@@ -99,7 +99,7 @@ export default function Connect() {
                         <div className={`absolute inset-0 border-2 border-transparent ${link.border} rounded-2xl transition-colors duration-300`} />
 
                         {/* Icon */}
-                        <div className="connect-card-icon relative z-10 p-4 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-300 text-slate-300 group-hover:text-white group-hover:scale-110 transform">
+                        <div className="connect-card-icon relative z-10 mb-2 transition-colors duration-300 text-slate-300 group-hover:text-white group-hover:scale-110 transform">
                             {link.icon}
                         </div>
 

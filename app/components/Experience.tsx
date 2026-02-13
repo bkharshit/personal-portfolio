@@ -106,7 +106,7 @@ export default function Experience() {
                             variants={dotVariants}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: false, margin: "-50px" }}
                         />
 
                         {/* Card */}
@@ -115,7 +115,7 @@ export default function Experience() {
                             variants={cardVariants}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-80px" }}
+                            viewport={{ once: false, margin: "-100px" }}
                             custom={index % 2 === 0 ? -1 : 1}
                             whileHover={{
                                 y: -6,

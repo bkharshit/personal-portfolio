@@ -2,19 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import ModeToggle from "./ModeToggle";
 
-interface HeaderProps {
-    mode: "professional" | "creator";
-    onModeToggle: () => void;
-}
+export default function Header() {
+    const pathname = usePathname();
+    const isCreator = pathname === "/creator";
 
-export default function Header({ mode, onModeToggle }: HeaderProps) {
     const [scrolled, setScrolled] = useState(false);
     // Initialize with true (default dark) to match server element
     const [darkMode, setDarkMode] = useState(true);
     const [mounted, setMounted] = useState(false);
+    // ... keeps going, just update the top imports and the logo link
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -52,7 +53,7 @@ export default function Header({ mode, onModeToggle }: HeaderProps) {
             transition={{ duration: 0.6, ease: "easeOut" as const }}
         >
             <div className="header-inner">
-                <a className="header-logo" href="#">
+                <Link className="header-logo" href="/">
                     <Image
                         src="/travel_logo_bw.svg"
                         alt="Harshit B K"
@@ -60,9 +61,9 @@ export default function Header({ mode, onModeToggle }: HeaderProps) {
                         height={40}
                         className="header-logo-img"
                     />
-                </a>
+                </Link>
 
-                <ModeToggle mode={mode} onToggle={onModeToggle} />
+                <ModeToggle isCreator={isCreator} />
 
                 <button
                     className="theme-toggle"

@@ -13,6 +13,9 @@ export const metadata: Metadata = {
 
 import MouseSpotlight from "./components/MouseSpotlight";
 
+import Header from "./components/Header";
+import ScrollToTop from "./components/ScrollToTop";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +33,9 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ScrollToTop />
         <MouseSpotlight />
+        <Header />
         {children}
       </body>
     </html>

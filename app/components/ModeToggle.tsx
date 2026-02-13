@@ -1,22 +1,36 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import Link from "next/link";
+import { useEffect } from "react";
 
 interface ModeToggleProps {
-    mode: "professional" | "creator";
-    onToggle: () => void;
+    isCreator: boolean;
 }
 
-export default function ModeToggle({ mode, onToggle }: ModeToggleProps) {
-    const isCreator = mode === "creator";
+export default function ModeToggle({ isCreator }: ModeToggleProps) {
+    const controls = useAnimation();
+
+    useEffect(() => {
+        // Reset animation when mode changes to ensure it's ready for next interaction
+        controls.set({ x: 0 });
+    }, [isCreator, controls]);
+
+    const handleActiveClick = async () => {
+        // Vibrate animation
+        await controls.start({
+            x: [0, -4, 4, -4, 4, 0],
+            transition: { duration: 0.3 }
+        });
+    };
 
     return (
-        <div className="mode-toggle-wrapper">
-            <button
-                className="mode-toggle"
-                onClick={onToggle}
-                aria-label={`Switch to ${isCreator ? "professional" : "creator"} mode`}
-            >
+        <motion.div
+            className="mode-toggle-wrapper"
+            animate={controls}
+        >
+            <div className="mode-toggle">
+                {/* Background Slider */}
                 <motion.div
                     className="mode-toggle-slider"
                     animate={{
@@ -32,27 +46,43 @@ export default function ModeToggle({ mode, onToggle }: ModeToggleProps) {
                         mass: 0.6,
                     }}
                 />
-                <AnimatePresence mode="wait">
-                    <motion.span
-                        key={`pro-${isCreator}`}
-                        className={`mode-toggle-label ${!isCreator ? "active" : ""}`}
-                        animate={!isCreator ? { scale: [1, 1.05, 1] } : { scale: 1 }}
-                        transition={{ duration: 0.3 }}
+
+                {/* Professional Button/Link */}
+                {isCreator ? (
+                    <Link
+                        href="/"
+                        className="mode-toggle-label"
+                        scroll={true}
                     >
                         Professional
-                    </motion.span>
-                </AnimatePresence>
-                <AnimatePresence mode="wait">
-                    <motion.span
-                        key={`creator-${isCreator}`}
-                        className={`mode-toggle-label ${isCreator ? "active" : ""}`}
-                        animate={isCreator ? { scale: [1, 1.05, 1] } : { scale: 1 }}
-                        transition={{ duration: 0.3 }}
+                    </Link>
+                ) : (
+                    <button
+                        className="mode-toggle-label active"
+                        onClick={handleActiveClick}
+                    >
+                        Professional
+                    </button>
+                )}
+
+                {/* Creator Button/Link */}
+                {!isCreator ? (
+                    <Link
+                        href="/creator"
+                        className="mode-toggle-label"
+                        scroll={true}
                     >
                         Creator
-                    </motion.span>
-                </AnimatePresence>
-            </button>
-        </div>
+                    </Link>
+                ) : (
+                    <button
+                        className="mode-toggle-label active"
+                        onClick={handleActiveClick}
+                    >
+                        Creator
+                    </button>
+                )}
+            </div>
+        </motion.div>
     );
 }

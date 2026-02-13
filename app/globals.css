@@ -939,15 +939,13 @@
   }
 
   [data-theme='light'] .connect-card-icon {
-    background: #e2e8f0;
-    /* slate-200 - darker bg for contrast */
+    background: transparent;
     color: #475569;
     /* slate-600 */
   }
 
   [data-theme='light'] .connect-card-link:hover .connect-card-icon {
-    background: #cbd5e1;
-    /* slate-300 */
+    background: transparent;
     color: #1e293b;
     /* slate-800 */
   }

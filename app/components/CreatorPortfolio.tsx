@@ -59,8 +59,7 @@ export default function CreatorPortfolio() {
                 <motion.div
                     className="creator-hero-header"
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, margin: "-50px" }}
+                    animate="visible"
                     variants={itemVariants}
                 >
                     <span className="creator-tagline">
@@ -73,8 +72,7 @@ export default function CreatorPortfolio() {
                         className="creator-hero-content"
                         variants={containerVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: false, amount: 0.3 }}
+                        animate="visible"
                     >
                         <motion.h1 className="creator-name" variants={itemVariants}>
                             Hey, It&apos;s me{" "}
@@ -133,8 +131,7 @@ export default function CreatorPortfolio() {
                         className="creator-hero-visual"
                         variants={visualVariants}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: false, amount: 0.5 }}
+                        animate="visible"
                     >
                         <div className="big-profile-wrapper">
                             {/* Animated Ring (Commented out by user) */}
@@ -164,7 +161,7 @@ export default function CreatorPortfolio() {
                 className="coming-soon-container"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 variants={containerVariants}
             >
                 <motion.div className="coming-soon-card" variants={itemVariants}>
